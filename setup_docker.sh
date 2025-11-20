@@ -96,7 +96,7 @@ docker run --rm \
   --platform=linux/amd64 \
   --cpus="4" \
   --memory="4g" \
-  --storage-opt size=16G \
+  --storage-opt size=8G \
   -v "$PWD":/work \
   -w /work \
   "$IMAGE" \
