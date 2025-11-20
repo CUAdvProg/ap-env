@@ -23,7 +23,7 @@ RUN apt-get update && \
 # Create non-root user "student"
 RUN useradd -ms /bin/bash student
 USER student
-WORKDIR /work
+WORKDIR /ap
 
 # Nice prompt, optional
 RUN echo 'export PS1="(ap-env) \u@\h:\w$ "' >> ~/.bashrc
