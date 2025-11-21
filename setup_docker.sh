@@ -60,7 +60,7 @@ install_docker_linux_or_wsl() {
     echo "Now:"
     echo "  1. Close this terminal window."
     echo "  2. Re-open your Ubuntu (WSL) terminal."
-    echo "  3. Re-run ./setup_and_run.sh."
+    echo "  3. Re-run ./setup_docker.sh."
   else
     echo "Docker installed."
     echo "You may need to log out and log back in so group changes take effect."
@@ -70,6 +70,64 @@ install_docker_linux_or_wsl() {
 }
 
 OS="$(uname -s)"
+
+ensure_docker_running() {
+  # If docker info works, daemon is reachable
+  if docker info >/dev/null 2>&1; then
+    return 0
+  fi
+
+  echo "Docker CLI is installed, but the daemon does not seem to be running."
+
+  case "$OS" in
+    Darwin)
+      echo "Attempting to start Docker Desktop..."
+      # Try to start Docker.app in the background (no error if it already runs)
+      open -g -a Docker || true
+
+      echo "Waiting for Docker Desktop to start..."
+      # Wait up to ~60 seconds
+      for i in {1..30}; do
+        if docker info >/dev/null 2>&1; then
+          echo "Docker is now running."
+          return 0
+        fi
+        sleep 2
+      done
+
+      echo "Docker Desktop is still not responding."
+      echo "Please open the 'Docker' app from Applications manually,"
+      echo "wait until it says 'Docker is running', and then re-run this script."
+      exit 1
+      ;;
+
+    Linux)
+      echo "Attempting to start Docker service on Linux..."
+
+      if command_exists systemctl; then
+        sudo systemctl start docker || true
+      else
+        sudo service docker start || true
+      fi
+
+      if docker info >/dev/null 2>&1; then
+        echo "Docker service started."
+        return 0
+      fi
+
+      echo "Could not start Docker automatically."
+      echo "Please start Docker manually (for example: 'sudo systemctl start docker')"
+      echo "and then re-run this script."
+      exit 1
+      ;;
+
+    *)
+      echo "Unsupported OS: $OS"
+      echo "Docker is installed but not running. Please start Docker manually and rerun this script."
+      exit 1
+      ;;
+  esac
+}
 
 # 1. Check for docker, install if missing
 if ! command_exists docker; then
@@ -88,7 +146,10 @@ if ! command_exists docker; then
   esac
 fi
 
-echo "Docker is installed. Pulling course image: $IMAGE"
+# 2. Make sure the daemon is actually running
+ensure_docker_running
+
+echo "Docker is installed and running. Pulling course image: $IMAGE"
 docker pull "$IMAGE"
 
 echo "Starting course environment with fixed resources (4 CPUs, 4GB RAM, 16GB disk)..."
