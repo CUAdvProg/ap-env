@@ -15,9 +15,37 @@ RUN apt-get update && \
         valgrind \
         git \
         vim \
+        neovim \
+        nano \
+        btop \
         sudo \
         python3 \
         python3-pip \
+        # Documentation and man pages \
+        man-db \
+        manpages-dev \
+        manpages-posix-dev \
+        # Debugging and analysis tools \
+        strace \
+        ltrace \
+        cppcheck \
+        # Shell and text processing utilities \
+        bash-completion \
+        shellcheck \
+        less \
+        curl \
+        wget \
+        tree \
+        bc \
+        diffutils \
+        patch \
+        zip \
+        unzip \
+        # Additional build tools \
+        autoconf \
+        automake \
+        libtool \
+        pkg-config \
     && rm -rf /var/lib/apt/lists/*
 
 # Create non-root user "student"
