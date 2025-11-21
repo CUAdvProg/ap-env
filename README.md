@@ -415,13 +415,3 @@ The script already tries to add you to the `docker` group; logging out/in is nee
 If your program only works outside this container (e.g., using different compilers or flags) but fails inside, we grade based on its behavior inside the standard environment.
 
 ---
-
-If you’d like, I can also add a short “For TAs” section at the bottom describing how you build/publish the image and how the autograder will call `docker run` with the same flags.
-
----
-
-### Formatting fixes
-
-- Normalized lists (replaced mixed bullets/characters with standard `-` and fixed indentation).
-- Fixed code fence issues and ensured all code blocks are closed properly.
-- Updated Table of Contents to list all H2 headings (excluded TL;DR and the main title).
