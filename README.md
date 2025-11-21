@@ -7,7 +7,7 @@ This repository provides the **standard development environment** for Advanced P
 - [1. What This Environment Does](#1-what-this-environment-does)
 - [2. Prerequisites (General)](#2-prerequisites-general)
 - [3. macOS – Detailed Instructions](#3-macos--detailed-instructions)
-- [4. Windows (with WSL) – Detailed Instructions](#4-windows-with-wsl-detailed-instructions)
+- [4. Windows (with WSL) – Detailed Instructions](#4-windows-with-wsl--detailed-instructions)
 - [5. Linux – Detailed Instructions (if relevant for your class)](#5-linux-detailed-instructions-if-relevant-for-your-class)
 - [6. What You Do Inside the Container](#6-what-you-do-inside-the-container)
 - [7. Troubleshooting](#7-troubleshooting)
