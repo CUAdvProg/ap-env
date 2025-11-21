@@ -28,7 +28,7 @@ This repository provides the **standard development environment** for Advanced P
    ```
 
 3. If Docker isn’t installed, the script will install Docker Desktop and then tell you to open it once. After Docker is running, run the script again.
-4. You’ll end up inside the course container at /work. Compile and run code there.
+4. You’ll end up inside the course container at /ap. Compile and run code there.
 
 ---
 
@@ -45,7 +45,7 @@ This repository provides the **standard development environment** for Advanced P
    ```
 
 4. If Docker isn’t installed in WSL, the script will install it, then tell you to close and reopen Ubuntu and run the script again.
-5. Once inside the container at /work, do all compilation and testing there.
+5. Once inside the container at /ap, do all compilation and testing there.
 
 ---
 
@@ -76,13 +76,13 @@ docker run --rm \
   --cpus="4" \
   --memory="4g" \
   --storage-opt size=8G \
-  -v "$PWD":/work \
-  -w /work \
+  -v "$PWD":/ap \
+  -w /ap \
   ghcr.io/CUAdvProg/ap-course-env:latest \
   /bin/bash
 ```
 
-- Mounts your assignment folder into the container at `/work`.
+- Mounts your assignment folder into the container at `/ap`.
 
 You should think of the container as your course Linux server, running locally on your machine.
 
@@ -160,14 +160,14 @@ The script will:
 3. Once Docker is running, it will:
    - Pull the course image.
    - Start the container with 4 CPUs / 4 GB RAM / 8 GB disk.
-   - Drop you into a shell at `/work`.
+   - Drop you into a shell at `/ap`.
 
 ### 3.5. Using the environment (macOS)
 
 Inside the container (you’ll see a bash prompt):
 
 ```bash
-cd /work
+cd /ap
 ls             # should show your assignment files
 make           # compile
 ./my_program   # run
@@ -252,14 +252,14 @@ The script will:
 4. Once Docker is installed and usable:
    - Pull the course image.
    - Start the container with 4 CPUs / 4 GB RAM / 8 GB disk.
-   - Drop you into a shell at `/work`.
+   - Drop you into a shell at `/ap`.
 
 ### 4.4. Using the environment (Windows + WSL)
 
 Once the container is running, your prompt is inside the container:
 
 ```bash
-cd /work
+cd /ap
 ls             # should show your assignment files
 make           # compile
 ./my_program   # run
@@ -319,10 +319,10 @@ Usage inside the container is identical to the macOS/WSL instructions above.
 
 ## 6. What You Do Inside the Container
 
-Inside the container, you always work in `/work`:
+Inside the container, you always work in `/ap`:
 
 ```bash
-cd /work
+cd /ap
 ls
 ```
 
@@ -333,7 +333,7 @@ Typical workflow:
 3. In the container:
 
 ```bash
-cd /work
+cd /ap
 make
 ./your_program
 ```
