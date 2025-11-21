@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-IMAGE="ghcr.io/CUAdvProg/ap-env:latest"
+IMAGE="ghcr.io/cuadvprog/ap-env:latest"
 
 command_exists() {
   command -v "$1" >/dev/null 2>&1
